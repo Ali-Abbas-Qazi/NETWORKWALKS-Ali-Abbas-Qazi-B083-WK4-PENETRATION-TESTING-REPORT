@@ -5,6 +5,8 @@
 **Target:** https://medirozahospital.com | **Type:** Full black-box penetration test, 5 days | **Author:** Ali Abbas Qazi
 
 </div>
+
+
 > Conducted in a controlled, authorized training environment with written permission from the client. None of the techniques below should be run against a system you don't have explicit authorization to test.
 
 📄 **This README is a visual walkthrough.** For the full write-up — detailed methodology, CWE references, risk ratings, and remediation steps — see the complete report: [`Mediroza_Pentest_Report_W4.docx`](./Mediroza_Pentest_Report_W4.docx).
