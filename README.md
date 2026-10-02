@@ -193,7 +193,43 @@ Running `nikto -h https://medirozahospital.com/` turned up directory indexing on
 
 <p align="center"><sub>8. Raw Unprotected BackUp Data.png</sub></p>
 
-The backup (`mediroza_db_backup_2019.sql`, full dump in [`9. Raw Unprotected BackUp Data.txt`](<9. Raw Unprotected BackUp Data.txt>)) held two complete plaintext tables: 30 staff records (names, roles, national ID numbers, contact details, and monthly salaries) and 10 shareholder records with ownership percentages. The full breakdown and risk ratings for this and every other finding are in the report linked at the top.
+The backup (`mediroza_db_backup_2019.sql`, full dump in [`9. Raw Unprotected BackUp Data.txt`](<9. Raw Unprotected BackUp Data.txt>)) held two complete plaintext tables: 30 staff records (names, roles, national ID numbers, contact details, and monthly salaries) and 10 shareholder records with ownership percentages. Each staff record also carried a government-format national ID number and direct contact details — these are left out of the tables below and not reproduced here, since their presence in the dump is the point, not their contents. Salary and equity figures are shown in full. For a clean, structured extract of the shareholder table and the doctor salaries, see [`Exposed_Data_Summary.txt`](<Exposed_Data_Summary.txt>).
+
+### Exposed Doctor Salary Data
+
+The salaries of all eight medical doctors in the dump, highest to lowest:
+
+| Name | Role | Department | Monthly Salary (ZAR) | Date Joined |
+|---|---|---|---|---|
+| Dr. Johan van der Merwe | Medical Director | Management | R 160,000 | 2007-01-22 |
+| Dr. Rajesh Naidoo | Chief Pathologist | Diagnostics Lab | R 138,000 | 2009-03-16 |
+| Dr. Vikram Chetty | Anaesthetist | Theatre | R 135,000 | 2011-06-13 |
+| Dr. Anita Naicker | Consultant Cardiologist | Cardiology | R 132,000 | 2012-09-10 |
+| Dr. Suresh Moodley | Consultant Radiologist | Radiology | R 130,000 | 2012-02-28 |
+| Dr. Ahmed Kara | Consultant Physician | Internal Medicine | R 128,000 | 2013-02-18 |
+| Dr. Fatima Patel | Pediatrician | Pediatrics | R 118,000 | 2013-10-17 |
+| Dr. Yusuf Cassim | Senior Registrar | Emergency & Trauma | R 74,000 | 2018-05-04 |
+
+*(The dump also exposed 22 non-doctor staff — nurses, pharmacists, IT, finance, admin — for 30 records in total.)*
+
+### Exposed Shareholder Data
+
+The full capitalization table — 10 equity holders whose percentages sum to exactly 100%, confirming this is the complete, unredacted ownership structure:
+
+| # | Shareholder | Share % | Shares Held | Share Class |
+|---|---|---|---|---|
+| 1 | Dr. Rajesh Naidoo | 18.00% | 180,000 | Ordinary |
+| 2 | Cedar Health Holdings (Pty) Ltd | 15.00% | 150,000 | Ordinary |
+| 3 | Dr. Johan van der Merwe | 12.00% | 120,000 | Ordinary |
+| 4 | Reddy Family Trust | 11.00% | 110,000 | Ordinary |
+| 5 | Thabo Molefe | 10.00% | 100,000 | Ordinary |
+| 6 | Sarah Botha | 9.00% | 90,000 | Ordinary |
+| 7 | Dr. Ahmed Kara | 8.00% | 80,000 | Preferential |
+| 8 | Naledi Zulu | 7.00% | 70,000 | Ordinary |
+| 9 | Michael Roberts | 6.00% | 60,000 | Ordinary |
+| 10 | Dr. Vikram Chetty | 4.00% | 40,000 | Preferential |
+
+Worth noting that several names appear in both tables — Dr. Naidoo, Dr. van der Merwe, Dr. Kara, and Dr. Chetty each draw a salary *and* hold equity, so the same file links a person's pay to their ownership stake in the hospital. The full breakdown and risk ratings for this and every other finding are in the report linked at the top.
 
 ---
 
@@ -242,4 +278,5 @@ It also tied the earlier weeks together in a way I didn't expect. The recon mind
 - `*.png` — screenshots for each step above
 - `hash1.txt` / `hash2.txt` / `hash3.txt` / `hashes.txt` — extracted PDF hashes
 - `9. Raw Unprotected BackUp Data.txt` — full SQL backup dump recovered from `/old/`
+- `Exposed_Data_Summary.txt` — restructured shareholder and doctor-salary tables from the backup
 - `Mediroza_Pentest_Report_W4.pdf` / `.docx` — full report with findings, risk ratings, and remediation
